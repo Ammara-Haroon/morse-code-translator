@@ -1,0 +1,77 @@
+@use "./normalize.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: monospace;
+}
+h1 {
+  text-align: center;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px;
+  height: 70vh;
+  width: calc(100% - 20px);
+  //border: 1px solid red;
+}
+.input-area {
+  border: 4px solid black;
+  border-radius: 10px;
+  label {
+    font-weight: bold;
+    font-size: x-large;
+    margin: 10px 10px 10px 10px;
+    display: block;
+  }
+}
+
+.container {
+  //border: 4px solid rebeccapurple;
+  display: flex;
+  textarea {
+    //white-space: pre;
+    font-size: x-large;
+    z-index: 1;
+    //border: 2px solid orange;
+    position: fixed;
+    background: transparent;
+    height: calc(70vh - 50px);
+    width: calc(50% - 25px);
+    resize: none;
+    color: transparent;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+  div {
+    white-space: pre;
+    font-size: x-large;
+    z-index: -1;
+    //border: 2px solid blue;
+    position: fixed;
+    height: calc(70vh - 50px);
+    width: calc(50% - 25px);
+    max-height: calc(70vh - 50px);
+    max-width: calc(50% - 25px);
+    color: green;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    //color: transparent;
+    text-wrap: wrap;
+  }
+}
+footer {
+  text-align: right;
+  font-weight: bold;
+  margin: 10px;
+}
+.valid {
+  color: green;
+}
+.invalid {
+  color: red;
+}

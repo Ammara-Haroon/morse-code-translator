@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../assets/icon.png" />
+    <script src="../script/DOM-utils.js" type="module" defer></script>
+    <title>Morse-Code Translator</title>
+  </head>
+  <body>
+    <header>
+      <h1>Morse Code Translator</h1>
+    </header>
+    <main>
+      <div class="input-area">
+        <label for="english-input">English:</label>
+        <div class="container">
+          <div id="englishDisplay"></div>
+          <textarea
+            id="englishInput"
+            name="english-input"
+            class="text-area"
+            placeholder="Enter English text here."
+          ></textarea>
+        </div>
+      </div>
+      <div class="input-area">
+        <label for="morse-code-input">Morse-Code:</label>
+        <div class="container">
+          <div id="morseCodeDisplay"></div>
+          <textarea
+            id="morseCodeInput"
+            name="morse-code-input"
+            class="text-area"
+            placeholder="Enter Morse-code here."
+          >
+          </textarea>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Created by: Ammara Haroon</p>
+    </footer>
+  </body>
+</html>
