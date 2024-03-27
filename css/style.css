@@ -317,6 +317,12 @@ template {
 
 h1 {
   text-align: center;
+  background-color: #feae73;
+  color: #696752;
+  border: 10px double #696752;
+  padding: 7px;
+  border-radius: 7px;
+  margin: 10px;
 }
 
 main {
@@ -329,14 +335,16 @@ main {
 }
 
 .input-area {
-  border: 4px solid black;
+  border: 4px solid #696752;
   border-radius: 10px;
 }
 .input-area label {
   font-weight: bold;
   font-size: x-large;
-  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   display: block;
+  background-color: #e7eee7;
+  color: #696752;
 }
 
 .container {
@@ -364,25 +372,23 @@ main {
   width: calc(50% - 25px);
   max-height: calc(70vh - 50px);
   max-width: calc(50% - 25px);
-  color: green;
+  color: #006955;
   overflow-y: scroll;
   overflow-x: hidden;
   word-wrap: break-word;
   text-wrap: wrap;
+  background-color: beige;
 }
 
 footer {
   text-align: right;
   font-weight: bold;
   margin: 10px;
-}
-
-.valid {
-  color: green;
+  color: #696752;
 }
 
 .invalid {
-  color: red;
+  color: #d64e52;
 }
 
 /*# sourceMappingURL=style.css.map */

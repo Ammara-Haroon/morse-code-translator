@@ -63,16 +63,29 @@ englishTextArea.addEventListener("input", () => {
   englishDisplay.innerHTML = markedInput;
   morseDisplay.innerHTML = translationDisplay;
   morseTextArea.value = translationTxt;
-  console.log("display", morseDisplay.innerHTML);
-  console.log("txt", morseTextArea.value);
+  //console.log("display", morseDisplay.innerHTML);
+  //console.log("txt", morseTextArea.value);
 });
-morseTextArea.addEventListener("input", (e) => {
-  morseDisplay.innerHTML = morseTextArea.value;
-  //  console.log(morseTextArea.value);
 
-  if (morseTextArea.value[morseTextArea.value.length - 1] !== " ") return;
+let isBackspace = false;
+const translateToEnglish = () => {
+  // //  console.log(morseTextArea.value);
+  // if (!morseTextArea.value.length) {
+  //   morseDisplay.innerHTML = "";
+  //   morseTextArea.value = "";
+  //   englishDisplay.innerHTML = "";
+  //   englishTextArea.value = "";
+  // }
+
+  if (
+    !isBackspace &&
+    morseTextArea.value[morseTextArea.value.length - 1] !== " "
+  )
+    return;
 
   console.log("...translating to English.");
+  //morseDisplay.innerHTML = morseTextArea.value;
+
   //const translation = translator.translateToEnglish(morseTextArea.value);
   // const translation = translator.translateToEnglish(morseTextArea.value);
   // console.log(translation);
@@ -89,7 +102,7 @@ morseTextArea.addEventListener("input", (e) => {
   // }
   //englishTextArea.value = translation.translationTxt;
   //morseDisplay.value = translation.markedInput;
-  console.log("return val", translator.translateToEnglish(morseTextArea.value));
+  //console.log("return val", translator.translateToEnglish(morseTextArea.value));
   const { translationTxt, translationDisplay, markedInput, formattedInput } =
     translator.translateToEnglish(morseTextArea.value);
   morseDisplay.innerHTML = markedInput;
@@ -98,16 +111,30 @@ morseTextArea.addEventListener("input", (e) => {
   englishTextArea.value = translationTxt;
   console.log("display", morseDisplay.innerHTML);
   console.log("txt", morseTextArea.value);
+};
+morseTextArea.addEventListener("input", () => {
+  translateToEnglish();
 });
 
-morseTextArea.addEventListener("keypress", (e) => {
-  //console.log(e.keyCode);
-  const DASH = 45;
-  const DOT = 46;
-  const SPACE = 32;
-  if (e.keyCode !== DASH && e.keyCode !== DOT && e.keyCode !== SPACE) {
+morseTextArea.addEventListener("keydown", (e) => {
+  console.log("keypress", e.key);
+
+  if (e.key === "Backspace" || e.key === "Delete") {
+    isBackspace = true;
+    return;
+  }
+  if (
+    e.key !== "-" &&
+    e.key !== "." &&
+    e.key !== " " &&
+    e.key !== "ArrowLeft" &&
+    e.key !== "ArrowRight" &&
+    e.key !== "ArrowUp" &&
+    e.key !== "ArrowDown"
+  ) {
     e.preventDefault();
   }
+  isBackspace = false;
 });
 
 morseTextArea.addEventListener("scroll", () => {

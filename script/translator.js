@@ -114,11 +114,11 @@ export const translator = {
     let translationDisplay = "";
     let formattedInput = "";
     const words = input.split("       ");
-    console.log("words", words);
+    //console.log("words", words);
     for (let i = 0; i < words.length; ++i) {
       const word = words[i];
       const letters = word.trim().split(" ");
-      console.log("letters", letters);
+      //console.log("letters", letters);
       for (let j = 0; j < letters.length; ++j) {
         const letter = letters[j];
         if (letter.trim() === "") continue;
