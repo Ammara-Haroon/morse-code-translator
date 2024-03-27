@@ -109,3 +109,11 @@ morseTextArea.addEventListener("keypress", (e) => {
     e.preventDefault();
   }
 });
+
+morseTextArea.addEventListener("scroll", () => {
+  morseDisplay.scrollTop = morseTextArea.scrollTop;
+});
+
+englishTextArea.addEventListener("scroll", () => {
+  englishDisplay.scrollTop = englishTextArea.scrollTop;
+});
