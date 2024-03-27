@@ -325,7 +325,7 @@ h1 {
   margin: 10px;
 }
 
-main {
+.wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -346,6 +346,9 @@ main {
   background-color: #e7eee7;
   color: #696752;
 }
+.input-area:focus-within label {
+  background-color: #c2c5c2;
+}
 
 .container {
   display: flex;
@@ -353,11 +356,12 @@ main {
 .container textarea {
   font-size: x-large;
   z-index: 1;
-  position: fixed;
+  position: absolute;
   background: transparent;
   height: calc(70vh - 50px);
   width: calc(50% - 25px);
   resize: none;
+  color: transparent;
   overflow-y: scroll;
   overflow-x: hidden;
   word-wrap: break-word;
@@ -367,7 +371,7 @@ main {
   white-space: pre;
   font-size: x-large;
   z-index: -1;
-  position: fixed;
+  position: absolute;
   height: calc(70vh - 50px);
   width: calc(50% - 25px);
   max-height: calc(70vh - 50px);
@@ -381,10 +385,27 @@ main {
 }
 
 footer {
-  text-align: right;
   font-weight: bold;
   margin: 10px;
   color: #696752;
+  text-align: center;
+  padding: 10px;
+  text-align: end;
+}
+
+.btn-container {
+  color: #696752;
+  text-align: center;
+}
+
+input {
+  height: 30px;
+  width: 30px;
+  margin: 20px;
+  margin-top: 0;
+  border: 2px dotted #696752;
+  border-radius: 25px;
+  background-color: #feae73;
 }
 
 .invalid {

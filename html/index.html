@@ -13,31 +13,42 @@
       <h1>Morse Code Translator</h1>
     </header>
     <main>
-      <div class="input-area">
-        <label for="english-input">English:</label>
-        <div class="container">
-          <div id="englishDisplay"></div>
-          <textarea
-            id="englishInput"
-            name="english-input"
-            class="text-area"
-            placeholder="Enter English text here."
-          ></textarea>
+      <div class="wrapper">
+        <div class="input-area">
+          <label for="english-input">English:</label>
+          <div class="container">
+            <div id="englishDisplay"></div>
+            <textarea
+              id="englishInput"
+              name="english-input"
+              class="text-area"
+              placeholder="Enter English text here."
+            ></textarea>
+          </div>
+        </div>
+        <div class="input-area">
+          <label for="morse-code-input">Morse-Code:</label>
+          <div class="container">
+            <div id="morseCodeDisplay"></div>
+            <textarea
+              id="morseCodeInput"
+              name="morse-code-input"
+              class="text-area"
+              placeholder="Enter Morse-code here (only - . or spaces)."
+            ></textarea>
+          </div>
         </div>
       </div>
-      <div class="input-area">
-        <label for="morse-code-input">Morse-Code:</label>
-        <div class="container">
-          <div id="morseCodeDisplay"></div>
-          <textarea
-            id="morseCodeInput"
-            name="morse-code-input"
-            class="text-area"
-            placeholder="Enter Morse-code here (only - . or spaces)."
-          ></textarea>
-        </div>
+      <div class="btn-container">
+        <input id="playBtn" type="image" src="../assets/play-icon.png" />
+        <input
+          id="clearBtn"
+          type="image"
+          src="../assets/sweeper-cleaning-icon.png"
+        />
       </div>
     </main>
+
     <footer>
       <p>Created by: Ammara Haroon</p>
     </footer>

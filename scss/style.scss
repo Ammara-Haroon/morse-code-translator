@@ -5,9 +5,7 @@
   margin: 0;
   font-family: monospace;
 }
-body {
-  //background-color: black;
-}
+
 h1 {
   text-align: center;
   background-color: #feae73;
@@ -17,19 +15,19 @@ h1 {
   border-radius: 7px;
   margin: 10px;
 }
-main {
+
+.wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin: 10px;
   height: 70vh;
   width: calc(100% - 20px);
-  //border: 1px solid red;
 }
+
 .input-area {
   border: 4px solid #696752;
   border-radius: 10px;
-
   label {
     font-weight: bold;
     font-size: x-large;
@@ -38,22 +36,22 @@ main {
     background-color: #e7eee7;
     color: #696752;
   }
+  &:focus-within label {
+    background-color: #c2c5c2;
+  }
 }
 
 .container {
-  //border: 4px solid rebeccapurple;
   display: flex;
   textarea {
-    //white-space: pre;
     font-size: x-large;
     z-index: 1;
-    //border: 2px solid orange;
-    position: fixed;
+    position: absolute;
     background: transparent;
     height: calc(70vh - 50px);
     width: calc(50% - 25px);
     resize: none;
-    //color: transparent;
+    color: transparent;
     overflow-y: scroll;
     overflow-x: hidden;
     word-wrap: break-word;
@@ -63,8 +61,7 @@ main {
     white-space: pre;
     font-size: x-large;
     z-index: -1;
-    //border: 2px solid blue;
-    position: fixed;
+    position: absolute;
     height: calc(70vh - 50px);
     width: calc(50% - 25px);
     max-height: calc(70vh - 50px);
@@ -73,17 +70,35 @@ main {
     overflow-y: scroll;
     overflow-x: hidden;
     word-wrap: break-word;
-    //color: transparent;
     text-wrap: wrap;
     background-color: beige;
   }
 }
+
 footer {
-  text-align: right;
   font-weight: bold;
   margin: 10px;
   color: #696752;
+  text-align: center;
+  padding: 10px;
+  text-align: end;
 }
+.btn-container {
+  // margin: 10px;
+  color: #696752;
+  text-align: center;
+  //padding: 5px;
+}
+input {
+  height: 30px;
+  width: 30px;
+  margin: 20px;
+  margin-top: 0;
+  border: 2px dotted #696752;
+  border-radius: 25px;
+  background-color: #feae73;
+}
+
 .invalid {
   color: #d64e52;
 }
