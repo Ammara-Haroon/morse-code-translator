@@ -4,6 +4,9 @@ const englishTextArea = document.querySelector("#englishInput");
 const morseTextArea = document.querySelector("#morseCodeInput");
 const englishDisplay = document.querySelector("#englishDisplay");
 const morseDisplay = document.querySelector("#morseCodeDisplay");
+const ENGLISH_MODE = "english";
+const MORSE_MODE = "morse";
+const ERR_MSG = "#undecodable#";
 
 const markErrorRed = (output, input, outputDisplay, inputDisplay) => {
   const errSpanOut = document.createElement("span");
@@ -13,55 +16,96 @@ const markErrorRed = (output, input, outputDisplay, inputDisplay) => {
     /#undecodable#/g,
     errSpanOut.outerHTML
   );
-  const strArr = input.split("");
-  output.errList.forEach((index) => {
-    const errSpanIn = document.createElement("span");
-    errSpanIn.classList.add("invalid");
-    errSpanIn.append(strArr[index]);
-    strArr[index] = errSpanIn.outerHTML;
+  const errSpanIn = document.createElement("span");
+  errSpanIn.classList.add("invalid");
+  let changedInput = input;
+  output.errList.forEach((err) => {
+    errSpanIn.append(err);
+    changedInput = changedInput.replace(/err?![</span>]/, errSpanIn.outerHTML);
+    console.log(changedInput);
   });
+  inputDisplay.innerHTML = changedInput;
 
-  inputDisplay.innerHTML = strArr.join("");
+  // let strArr = [];
+  // if (mode === "morse") {
+  //   strArr = input.split(" ");
+  //   strArr.pop();
+  // } else {
+  //   input.split("");
+  // }
+  // output.errList.forEach((index) => {
+  //   const errSpanIn = document.createElement("span");
+  //   errSpanIn.classList.add("invalid");
+  //   errSpanIn.append(strArr[index]);
+  //   strArr[index] = errSpanIn.outerHTML;
+  // });
+
+  // inputDisplay.innerHTML =
+  //   mode === MORSE_MODE ? strArr.join(" ") : strArr.join("");
 };
 englishTextArea.addEventListener("input", () => {
   console.log("...translating to Morse Code.");
   englishDisplay.innerHTML = englishTextArea.value;
-  const translation = translator.translateToMorseCode(englishTextArea.value);
-  if (translation.isInvalidInput) {
-    markErrorRed(
-      translation,
-      englishTextArea.value,
-      morseDisplay,
-      englishDisplay
-    );
-  } else {
-    morseDisplay.innerHTML = translation.translationTxt;
-  }
-  morseTextArea.value = translation.translationTxt;
+  // const translation = translator.translateToMorseCode(englishTextArea.value);
+  // if (translation.isInvalidInput) {
+  //   markErrorRed(
+  //     translation,
+  //     englishTextArea.value,
+  //     morseDisplay,
+  //     englishDisplay
+  //   );
+  // } else {
+  //   morseDisplay.innerHTML = translation.translationTxt;
+  // }
+  // morseTextArea.value = translation.translationTxt;
+  const { translationTxt, translationDisplay, markedInput } =
+    translator.translateToMorseCode(englishTextArea.value);
+  englishDisplay.innerHTML = markedInput;
+  morseDisplay.innerHTML = translationDisplay;
+  morseTextArea.value = translationTxt;
+  console.log("display", morseDisplay.innerHTML);
+  console.log("txt", morseTextArea.value);
 });
-
 morseTextArea.addEventListener("input", (e) => {
-  if (e.target) {
-    console.log(e.target);
-  }
-  console.log("...translating to English.");
   morseDisplay.innerHTML = morseTextArea.value;
-  const translation = translator.translateToEnglish(morseTextArea.value);
-  if (translation.isInvalidInput) {
-    markErrorRed(
-      translation,
-      morseTextArea.value,
-      englishDisplay,
-      morseDisplay
-    );
-  } else {
-    englishDisplay.innerHTML = translation.translationTxt;
-  }
-  englishTextArea.value = translation.translationTxt;
+  //  console.log(morseTextArea.value);
+
+  if (morseTextArea.value[morseTextArea.value.length - 1] !== " ") return;
+
+  console.log("...translating to English.");
+  //const translation = translator.translateToEnglish(morseTextArea.value);
+  // const translation = translator.translateToEnglish(morseTextArea.value);
+  // console.log(translation);
+  // if (translation.isInvalidInput) {
+  //   markErrorRed(
+  //     translation,
+  //     morseTextArea.value,
+  //     englishDisplay,
+  //     morseDisplay,
+  //     MORSE_MODE
+  //   );
+  // } else {
+  //   englishDisplay.innerHTML = translation.translationTxt;
+  // }
+  //englishTextArea.value = translation.translationTxt;
+  //morseDisplay.value = translation.markedInput;
+  console.log("return val", translator.translateToEnglish(morseTextArea.value));
+  const { translationTxt, translationDisplay, markedInput, formattedInput } =
+    translator.translateToEnglish(morseTextArea.value);
+  morseDisplay.innerHTML = markedInput;
+  morseTextArea.value = formattedInput;
+  englishDisplay.innerHTML = translationDisplay;
+  englishTextArea.value = translationTxt;
+  console.log("display", morseDisplay.innerHTML);
+  console.log("txt", morseTextArea.value);
 });
 
 morseTextArea.addEventListener("keypress", (e) => {
-  if (e.keyCode !== "." && e.keyCode !== "-") {
+  //console.log(e.keyCode);
+  const DASH = 45;
+  const DOT = 46;
+  const SPACE = 32;
+  if (e.keyCode !== DASH && e.keyCode !== DOT && e.keyCode !== SPACE) {
     e.preventDefault();
   }
 });

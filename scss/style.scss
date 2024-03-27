@@ -41,10 +41,11 @@ main {
     height: calc(70vh - 50px);
     width: calc(50% - 25px);
     resize: none;
-    color: transparent;
+    //color: transparent;
     overflow-y: scroll;
     overflow-x: hidden;
     word-wrap: break-word;
+    caret-color: blue;
   }
   div {
     white-space: pre;
