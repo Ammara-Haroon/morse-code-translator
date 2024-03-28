@@ -8,7 +8,7 @@ const countTrailingSpaces = (str) => {
       break;
     }
   }
-  return count;
+  return count % 7;
 };
 
 //add trailing spaces back to the end of morse code input
@@ -71,8 +71,6 @@ export const translator = {
     "!": "-.-.--",
     ".": ".-.-.-",
     "-": "-....-",
-    "*": "-..-",
-    "%": "-----      -..-.      -----",
     "+": ".-.-.",
     '"': ".-..-.",
     "?": "..--..",
@@ -82,33 +80,31 @@ export const translator = {
     let translationTxt = "";
     let markedInput = "";
     let translationDisplay = "";
-    for (let i = 0; i < input.length; ++i) {
-      // split english to individual letters/symbols
-      if (input.charAt(i) === " ") {
-        //remove the trailing space and add seven spaces to the trnslation to indicate new word
-        translationTxt =
-          translationTxt.replace(/ $/, "") + this.characterMap[input.charAt(i)];
-        translationDisplay =
-          translationDisplay.replace(/ $/, "") +
-          this.characterMap[input.charAt(i)];
-        markedInput += input.charAt(i);
-      } else if (this.characterMap[input.charAt(i)]) {
+    const inputUpperCase = input.toUpperCase();
+
+    for (let i = 0; i < inputUpperCase.length; ++i) {
+      //split english to individual letters/symbols
+      if (inputUpperCase.charAt(i) === " ") {
+        //remove the trailing space and add seven spaces to the translation to indicate new word
+        if (countTrailingSpaces(translationTxt) === 1) {
+          translationTxt = translationTxt.replace(/\s$/, "");
+          translationDisplay = translationDisplay.replace(/\s$/, "");
+        }
+      }
+      if (this.characterMap[inputUpperCase.charAt(i)]) {
         // if the code for the symbol is found add it to the translation
-        translationTxt += this.characterMap[input.charAt(i)] + " ";
-        translationDisplay += this.characterMap[input.charAt(i)] + " ";
-        markedInput += input.charAt(i);
-      } else if (this.characterMap[input.charAt(i).toUpperCase()]) {
-        // if the code for the letter is found add it to the translation
-        translationTxt +=
-          this.characterMap[input.charAt(i).toUpperCase()] + " ";
-        translationDisplay +=
-          this.characterMap[input.charAt(i).toUpperCase()] + " ";
+        translationTxt += this.characterMap[inputUpperCase.charAt(i)];
+        translationDisplay += this.characterMap[inputUpperCase.charAt(i)];
         markedInput += input.charAt(i);
       } else {
         // if the code for the symbol, is not found add undecodable and mark it red
-        translationTxt += "#undecodable# ";
-        translationDisplay += markErrorRed("#undecodable#") + " ";
+        translationTxt += "#undecodable#";
+        translationDisplay += markErrorRed("#undecodable#");
         markedInput += markErrorRed(input.charAt(i));
+      }
+      if (i !== inputUpperCase.length - 1 && inputUpperCase.charAt(i) !== " ") {
+        translationTxt += " ";
+        translationDisplay += " ";
       }
     }
     return { translationTxt, translationDisplay, markedInput };
@@ -151,12 +147,12 @@ export const translator = {
           formattedInput += " ";
         }
       }
-      translationTxt += " ";
-      translationDisplay += " ";
       //add 7 spaces after each word except to the last one
       if (i !== words.length - 1) {
         markedInput += "       ";
         formattedInput += "       ";
+        translationTxt += " ";
+        translationDisplay += " ";
       }
     }
     //add trailing spaces back
@@ -173,8 +169,9 @@ translator.characterMapReverse = Object.fromEntries(
 
 // creates a red font span to highlight error in input
 function markErrorRed(input) {
-  const errSpan = document.createElement("span");
-  errSpan.classList.add("invalid");
-  errSpan.append(input);
-  return errSpan.outerHTML;
+  // const errSpan = document.createElement("span");
+  // errSpan.classList.add("invalid");
+  // errSpan.append(input);
+  // return errSpan.outerHTML;
+  return `<span class="invalid">${input}</span>`;
 }

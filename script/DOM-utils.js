@@ -7,11 +7,8 @@ const morseDisplay = document.querySelector("#morseCodeDisplay");
 const playBtn = document.querySelector("#playBtn");
 const clearBtn = document.querySelector("#clearBtn");
 
-let isBackspace = false;
-
 //on input to the english text area, translate it to morse code and put output in the morse code text area
 englishTextArea.addEventListener("input", () => {
-  //console.log("...translating to Morse Code.");
   const { translationTxt, translationDisplay, markedInput } =
     translator.translateToMorseCode(englishTextArea.value);
   englishDisplay.innerHTML = markedInput;
@@ -21,22 +18,6 @@ englishTextArea.addEventListener("input", () => {
 
 //on input to the morse-code text area, translate it to english and put output in the english text area
 morseTextArea.addEventListener("input", () => {
-  if (morseTextArea.value.length === 0) {
-    morseDisplay.innerHTML = "";
-    morseTextArea.value = "";
-    englishDisplay.innerHTML = "";
-    englishTextArea.value = "";
-    return;
-  }
-  if (
-    !isBackspace &&
-    morseTextArea.value[morseTextArea.value.length - 1] !== " "
-  ) {
-    morseDisplay.innerText +=
-      morseTextArea.value[morseTextArea.value.length - 1];
-    return;
-  }
-  //  console.log("...translating to English.");
   const { translationTxt, translationDisplay, markedInput, formattedInput } =
     translator.translateToEnglish(morseTextArea.value);
   morseDisplay.innerHTML = markedInput;
@@ -47,10 +28,6 @@ morseTextArea.addEventListener("input", () => {
 
 // keys that allowed to work in the morse code text area--block the rest
 morseTextArea.addEventListener("keydown", (e) => {
-  if (e.key === "Backspace" || e.key === "Delete") {
-    isBackspace = true;
-    return;
-  }
   if (
     e.key !== "-" &&
     e.key !== "." &&
@@ -58,11 +35,12 @@ morseTextArea.addEventListener("keydown", (e) => {
     e.key !== "ArrowLeft" &&
     e.key !== "ArrowRight" &&
     e.key !== "ArrowUp" &&
-    e.key !== "ArrowDown"
+    e.key !== "ArrowDown" &&
+    e.key !== "Backspace" &&
+    e.key !== "Delete"
   ) {
     e.preventDefault();
   }
-  isBackspace = false;
 });
 
 //match the scrollbars of masking color displaying divs and the text areas
@@ -74,6 +52,7 @@ englishTextArea.addEventListener("scroll", () => {
   englishDisplay.scrollTop = englishTextArea.scrollTop;
 });
 
+//clear the text areas
 clearBtn.addEventListener("click", () => {
   englishDisplay.innerHTML = "";
   morseDisplay.innerHTML = "";
@@ -81,6 +60,7 @@ clearBtn.addEventListener("click", () => {
   morseTextArea.value = "";
 });
 
+//play sound
 playBtn.addEventListener("click", () => {
   play(englishTextArea.value);
 });
