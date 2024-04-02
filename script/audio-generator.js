@@ -1,5 +1,5 @@
-import { translator } from "./translator.js";
-const MORSE_CODES = translator.characterMap;
+import { characterMap } from "./translator.js";
+const MORSE_CODES = characterMap;
 function play_char(gain, dot, time, character) {
   for (let i = 0; i < character.length; i++) {
     switch (character[i]) {

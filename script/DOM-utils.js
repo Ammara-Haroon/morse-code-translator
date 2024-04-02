@@ -1,4 +1,8 @@
-import { translator } from "./translator.js";
+import {
+  characterMap,
+  translateToEnglish,
+  translateToMorseCode,
+} from "./translator.js";
 import { play } from "./audio-generator.js";
 const englishTextArea = document.querySelector("#englishInput");
 const morseTextArea = document.querySelector("#morseCodeInput");
@@ -10,16 +14,30 @@ const clearBtn = document.querySelector("#clearBtn");
 //on input to the english text area, translate it to morse code and put output in the morse code text area
 englishTextArea.addEventListener("input", () => {
   const { translationTxt, translationDisplay, markedInput } =
-    translator.translateToMorseCode(englishTextArea.value);
+    translateToMorseCode(englishTextArea.value);
   englishDisplay.innerHTML = markedInput;
   morseDisplay.innerHTML = translationDisplay;
   morseTextArea.value = translationTxt;
 });
 
+const clearEverything = () => {
+  englishDisplay.innerHTML = "";
+  morseDisplay.innerHTML = "";
+  englishTextArea.value = "";
+  morseTextArea.value = "";
+};
+englishTextArea.addEventListener("click", () => {
+  //clearEverything();
+});
+
+morseTextArea.addEventListener("click", () => {
+  //clearEverything();
+});
+
 //on input to the morse-code text area, translate it to english and put output in the english text area
 morseTextArea.addEventListener("input", () => {
   const { translationTxt, translationDisplay, markedInput, formattedInput } =
-    translator.translateToEnglish(morseTextArea.value);
+    translateToEnglish(morseTextArea.value);
   morseDisplay.innerHTML = markedInput;
   morseTextArea.value = formattedInput;
   englishDisplay.innerHTML = translationDisplay;
@@ -58,10 +76,7 @@ englishTextArea.addEventListener("scroll", () => {
 
 //clear the text areas
 clearBtn.addEventListener("click", () => {
-  englishDisplay.innerHTML = "";
-  morseDisplay.innerHTML = "";
-  englishTextArea.value = "";
-  morseTextArea.value = "";
+  clearEverything();
 });
 
 //play sound
