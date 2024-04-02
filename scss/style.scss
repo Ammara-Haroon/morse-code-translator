@@ -21,13 +21,15 @@ h1 {
   grid-template-rows: 1fr 1fr;
   gap: 10px;
   margin: 10px;
-  height: 70vh;
   width: calc(100% - 20px);
 }
 
 .input-area {
   border: 4px solid #696752;
   border-radius: 10px;
+  height: calc(35vh - 56px);
+  width: calc(100% - 8px);
+
   .header {
     font-weight: bold;
     font-size: x-large;
@@ -35,6 +37,7 @@ h1 {
     display: block;
     background-color: #e7eee7;
     color: #696752;
+    height: 2em;
   }
   &:focus-within label {
     background-color: #c2c5c2;
@@ -43,7 +46,7 @@ h1 {
 @mixin common-style {
   font-size: x-large;
   position: absolute;
-  height: calc(35vh - 56px);
+  height: calc(35% - 115px);
   width: calc(100% - 29px);
   overflow-y: scroll;
   overflow-x: hidden;
@@ -64,8 +67,8 @@ h1 {
     white-space: pre;
     z-index: -1;
     position: absolute;
-    max-height: calc(70vh - 50px);
-    max-width: calc(100% - 29px);
+    //max-height: calc(70vh - 50px);
+    //max-width: calc(100% - 29px);
     color: #006955;
     background-color: beige;
     @include common-style;
@@ -103,8 +106,12 @@ input {
 .error {
   color: #d64e52;
   font-size: small;
-  display: inline;
+  display: block;
   opacity: 0;
   transition: opacity 1s;
+  white-space: nowrap;
   text-wrap: nowrap;
+  text-overflow: ellipsis;
+  max-width: 80%;
+  //border: 1px solid red;
 }
