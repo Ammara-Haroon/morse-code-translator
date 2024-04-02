@@ -26,6 +26,7 @@ morseTextArea.addEventListener("input", () => {
   englishTextArea.value = translationTxt;
 });
 
+const errorMsg = document.querySelector(".error");
 // keys that allowed to work in the morse code text area--block the rest
 morseTextArea.addEventListener("keydown", (e) => {
   if (
@@ -40,6 +41,9 @@ morseTextArea.addEventListener("keydown", (e) => {
     e.key !== "Delete"
   ) {
     e.preventDefault();
+    errorMsg.style.opacity = 1;
+  } else {
+    errorMsg.style.opacity = 0;
   }
 });
 

@@ -15,7 +15,7 @@
     <main>
       <div class="wrapper">
         <div class="input-area">
-          <label for="english-input">English:</label>
+          <label class="header" for="english-input">English:</label>
           <div class="container">
             <div id="englishDisplay"></div>
             <textarea
@@ -27,7 +27,12 @@
           </div>
         </div>
         <div class="input-area">
-          <label for="morse-code-input">Morse-Code:</label>
+          <div class="header">
+            <label for="morse-code-input">Morse-Code:</label>
+            <p class="error">
+              You can only enter dots(.), dashes(-) and spaces.
+            </p>
+          </div>
           <div class="container">
             <div id="morseCodeDisplay"></div>
             <textarea
