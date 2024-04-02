@@ -1,4 +1,4 @@
-import { translateToMorseCode } from "./js";
+import { translateToMorseCode } from "./translator.js";
 
 describe("Testing Translator from English to Morse Code", () => {
   it("Should return an empty string for an empty string input", () => {
