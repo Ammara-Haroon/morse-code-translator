@@ -19,7 +19,7 @@ The morse code translator has two text areas in which user can input english tex
 
 ### Screenshots:
 
-![screenshot of morse code translator](image-1.png)
+![screenshot](image-2.png)
 
 ### Tools Used:
 
