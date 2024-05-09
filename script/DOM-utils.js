@@ -11,6 +11,7 @@ const morseDisplay = document.querySelector("#morseCodeDisplay");
 const playBtn = document.querySelector("#playBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const infoMsg = document.querySelector("#infoMsg");
+const errorMsg = document.querySelector("#errMsg");
 let isEnglishActive = true;
 //on input to the english text area, translate it to morse code and put output in the morse code text area
 englishTextArea.addEventListener("input", () => {
@@ -30,6 +31,7 @@ const clearEverything = () => {
   morseTextArea.value = "";
 };
 englishTextArea.addEventListener("click", () => {
+    errorMsg.style.opacity = 0;
   if (isEnglishActive) return;
   isEnglishActive = true;
   const cleanEnglish = englishDisplay.innerHTML.replace(
@@ -73,7 +75,6 @@ morseTextArea.addEventListener("input", () => {
   englishTextArea.value = translationTxt;
 });
 
-const errorMsg = document.querySelector("#errMsg");
 // keys that allowed to work in the morse code text area--block the rest
 morseTextArea.addEventListener("keydown", (e) => {
   if (
