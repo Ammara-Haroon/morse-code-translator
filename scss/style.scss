@@ -61,14 +61,11 @@ h1 {
     resize: none;
     color: transparent;
     caret-color: blue;
-    //border: 1px solid red;
   }
   div {
     white-space: pre;
     z-index: -1;
     position: absolute;
-    //max-height: calc(70vh - 50px);
-    //max-width: calc(100% - 29px);
     color: #006955;
     background-color: beige;
     @include common-style;
@@ -113,5 +110,4 @@ input {
   text-wrap: nowrap;
   text-overflow: ellipsis;
   max-width: 80%;
-  //border: 1px solid red;
 }
