@@ -3,6 +3,9 @@ https://ammara-haroon.github.io/morse-code-translator/
 
 Morse Code Translator in Vanilla JavaScript, SASS and HTML
 
+## Demo & Snippets
+![screenshot](image-2.png)
+
 ## Project Description
 
 The goal of this project is to create a web page Morse Code translator.
@@ -17,10 +20,6 @@ The goal of this project is to create a web page Morse Code translator.
 ## Design:
 
 The morse code translator has two text areas in which user can input English text and morse code sequence respectively. The page has two buttons. One is for clearing the text areas and the other is for translating English to morse code sound. Input text and translation are simultaneously matched. Whenever a text changes, translation appears on the other side. The errors in input are red and correct text is colored green. The color on the tab of the text area hints at what mode of translation i.e., English or morse code is active.
-
-### Screenshots:
-
-![screenshot](image-2.png)
 
 ### Tools Used:
 
@@ -45,3 +44,18 @@ HTML, SCSS, compiled CSS, JavaScript and Image files (assets) are maintained in 
   -A similar object contains the reverse key value pairing.
 - Special checks are put in place to check for spaces and it is made sure that no extra spaces are added while translation.
 - The extra spaces in the morse code are corrected on the go. Only a single and a group of 7 spaces are kept. The rest are considered erroneous and removed from the user's input.
+
+## Change logs
+
+### 25/03/2024 - Added English to Morse Code Translator
+
+### 27/03/2024 
+- Added Morse Code to English Translator
+- Added overly div to text area to color code errors and correct input
+
+### 28/03/2024 
+- Added jest test cases
+- Added clear input and play sound functionality
+
+### 04/04/2024 - Added cleaning up faulty input feature
+
